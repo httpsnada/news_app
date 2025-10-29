@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/ui/design/design.dart';
 import 'package:news/ui/provider/theme_provider.dart';
+import 'package:news/ui/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class CustomScaffold extends StatelessWidget {
@@ -38,7 +39,7 @@ class CustomScaffold extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                // navigate to home
+                Navigator.pushReplacementNamed(context, HomeScreen.routeName);
               },
               child: ListTile(
                 title: Text("Go To Home"),

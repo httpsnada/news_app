@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:news/data/models/article_model.dart';
+import 'package:news/api/model/responses/articles/Articles.dart';
 
 class ArticleItem extends StatelessWidget {
   const ArticleItem({super.key, required this.article});
@@ -25,7 +24,7 @@ class ArticleItem extends StatelessWidget {
             child: CachedNetworkImage(
               fit: BoxFit.cover,
               height: 220,
-              imageUrl: article.image ?? " ",
+              imageUrl: article.urlToImage ?? " ",
               placeholder: (context, url) =>
                   Center(child: CircularProgressIndicator()),
               errorWidget: (context, url, error) =>
@@ -48,9 +47,10 @@ class ArticleItem extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               Text(
-                DateFormat.yMMMMEEEEd().format(
-                  article.publishAt ?? DateTime.now(),
-                ),
+                // DateFormat.yMMMMEEEEd().format(
+                //   article.publishAt ?? DateTime.now(),
+                // ),
+                article.publishedAt ?? "",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

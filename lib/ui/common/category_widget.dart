@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/data/models/category_model.dart';
 import 'package:news/ui/design/design.dart';
-import 'package:news/ui/screens/news_screen.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({
@@ -16,9 +15,7 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, NewsScreen.routeName);
-      },
+      onTap: () {},
       child: Container(
         child: Stack(
           alignment: index.isEven
