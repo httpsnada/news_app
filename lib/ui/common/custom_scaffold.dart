@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:news/ui/design/design.dart';
 import 'package:news/ui/provider/theme_provider.dart';
-import 'package:news/ui/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class CustomScaffold extends StatelessWidget {
   final String title;
-  final Widget child;
+  final Widget body;
+  final VoidCallback onHomeClick;
 
-  const CustomScaffold({super.key, required this.title, required this.child});
+  const CustomScaffold(this.onHomeClick,
+      {super.key, required this.title, required this.body});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,8 @@ class CustomScaffold extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                onHomeClick();
+                Navigator.pop(context);
               },
               child: ListTile(
                 title: Text("Go To Home"),
@@ -70,7 +72,7 @@ class CustomScaffold extends StatelessWidget {
         ),
       ),
 
-      body: child,
+      body: body,
     );
   }
 }

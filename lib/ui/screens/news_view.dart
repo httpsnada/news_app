@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:news/api/api_manager.dart';
-import 'package:news/ui/common/custom_scaffold.dart';
+import 'package:news/data/models/category_model.dart';
 import 'package:news/ui/common/news_sources.dart';
 
-class NewsScreen extends StatelessWidget {
-  static const String routeName = '/newsScreen';
+class NewsView extends StatelessWidget {
+  static const String routeName = '/newsView';
+  CategoryModel category;
 
-  NewsScreen({super.key});
+  NewsView(this.category, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-        title: "Sports",
-        child: FutureBuilder(
-            future: ApiManager.getInstance().getNewsSources("sports"),
+    return Scaffold(
+      //title: category.title ?? " ",
+        body: FutureBuilder(
+            future: ApiManager.getInstance().getNewsSources(category.id ?? " "),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:news/data/models/category_model.dart';
 import 'package:news/ui/common/category_widget.dart';
-import 'package:news/ui/common/custom_scaffold.dart';
 
-class HomeScreen extends StatelessWidget {
-  static const String routeName = '/homeScreen';
+typedef OnCategoryClick = void Function(CategoryModel category);
 
-  HomeScreen({super.key});
+class CategoryView extends StatelessWidget {
+  static const String routeName = '/categoryView';
+  OnCategoryClick onCategoryClick;
+
+  CategoryView(this.onCategoryClick, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      title: 'Home',
-      child: Padding(
+    return Scaffold(
+      // title: 'Home',
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +32,11 @@ class HomeScreen extends StatelessWidget {
               child: ListView.separated(
                 itemBuilder: (context, index) {
                   var category = CategoryModel.categories[index];
-                  return CategoryWidget(category: category, index: index);
+                  return InkWell(
+                      onTap: () {
+                        onCategoryClick(category);
+                      },
+                      child: CategoryWidget(category: category, index: index));
                 },
                 itemCount: CategoryModel.categories.length,
                 separatorBuilder: (context, index) {

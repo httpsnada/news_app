@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news/api/model/responses/articles/Articles.dart';
+import 'package:news/ui/extensions/DateFormat.dart';
 
 class ArticleItem extends StatelessWidget {
   const ArticleItem({super.key, required this.article});
@@ -42,16 +43,23 @@ class ArticleItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "By : ${article.author}",
-                style: Theme.of(context).textTheme.bodySmall,
+              Expanded(
+                child: Text(
+                  "By : ${article.author}",
+                  style: Theme.of(context).textTheme.bodySmall,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-              Text(
-                // DateFormat.yMMMMEEEEd().format(
-                //   article.publishAt ?? DateTime.now(),
-                // ),
-                article.publishedAt ?? "",
-                style: Theme.of(context).textTheme.bodySmall,
+              Expanded(
+                child: Text(
+                  // DateFormat.yMMMMEEEEd().format(
+                  //   article.publishAt ?? DateTime.now(),
+                  // ),
+                  article.publishedAt?.formatNewsDate() ?? "",
+                  style: Theme.of(context).textTheme.bodySmall,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.end,
+                ),
               ),
             ],
           ),
