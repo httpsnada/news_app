@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news/data/models/category_model.dart';
 import 'package:news/ui/common/custom_scaffold.dart';
-import 'package:news/ui/screens/category_view.dart';
-import 'package:news/ui/screens/news_view.dart';
+import 'package:news/ui/screens/category_details/category_details.dart';
+import 'package:news/ui/screens/category_screen/category_view.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/homeScreen';
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       title: category == null ? 'Home' : category?.title ?? "",
       body: category == null
           ? CategoryView(onCategoryClick)
-          : NewsView(category!),
+          : CategoryDetails(category!),
     );
   }
 

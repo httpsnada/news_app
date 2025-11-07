@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news/api/api_manager.dart';
 import 'package:news/api/model/responses/sources/Sources.dart';
-import 'package:news/ui/common/article_list.dart';
+import 'package:news/ui/common/new_sources_tabs_view.dart';
 
 class NewsSources extends StatefulWidget {
   List<Source> tabs;
@@ -37,20 +36,8 @@ class _NewsSourcesState extends State<NewsSources> {
             ),
           ),
           Expanded(
-            child: FutureBuilder(
-              future: ApiManager.getInstance().getArticles(
-                widget.tabs[selectedIndex].id ?? "",
-              ),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (snapshot.hasError) {
-                  return Center(child: Text("Error"));
-                }
-                var response = snapshot.data;
-                return ArticleList(articles: response?.articles ?? []);
-              },
+            child: NewsSourcesTabsView(
+              source: widget.tabs[selectedIndex],
             ),
           ),
         ],

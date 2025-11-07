@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/ui/design/theme.dart';
-import 'package:news/ui/home/home_screen.dart';
 import 'package:news/ui/provider/theme_provider.dart';
+import 'package:news/ui/screens/home/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
